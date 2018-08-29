@@ -43,5 +43,11 @@ class House
     end
   end
 
+  def rooms_by_category
+    @rooms.sort_by do |room|
+      room.category
+    end
+  end
+
 
 end
