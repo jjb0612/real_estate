@@ -16,9 +16,9 @@ class RoomTest < Minitest::Test
     assert_equal 13, room.width
   end
 
-  def test_room_has_area
+  def test_room_can_calculate_area
     room = Room.new(:bedroom, 10, 13)
     assert_equal 130, room.area
   end
-  
+
 end
