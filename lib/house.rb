@@ -32,4 +32,9 @@ class House
     total_area
   end
 
+  def price_per_square_foot
+    price_per = price.to_f / area
+    price_per.round(2)
+  end
+
 end
