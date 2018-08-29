@@ -22,8 +22,8 @@ class HouseTest < Minitest::Test
 
   def test_house_can_add_rooms
     house = House.new("400000", "123 sugar lane")
-    room_1 = Room.new(:bedroom, 13, 15)
-    room_2 = Room.new(:bedroom, 15, 18)
+    room_1 = Room.new(:bedroom, 10, 13)
+    room_2 = Room.new(:bedroom, 11, 15)
     house.add_room(room_1)
     house.add_room(room_2)
     assert_equal [room_1, room_2], house.rooms
@@ -31,30 +31,43 @@ class HouseTest < Minitest::Test
 
   def test_house_can_show_different_rooms
     house = House.new("400000", "123 sugar lane")
-    room_1 = Room.new(:bedroom, 12, 15)
-    room_2 = Room.new(:bedroom, 10, 13)
-    room_3 = Room.new(:livingroom, 25, 15)
+    room_1 = Room.new(:bedroom, 10, 13)
+    room_2 = Room.new(:bedroom, 11, 15)
+    room_3 = Room.new(:living_room, 25, 15)
     room_4 = Room.new(:basement, 30, 41)
     house.add_room(room_1)
     house.add_room(room_2)
     house.add_room(room_3)
     house.add_room(room_4)
     assert_equal [room_1, room_2], house.rooms_from_category(:bedroom)
-    assert_equal [room_3], house.rooms_from_category(:livingroom)
+    assert_equal [room_3], house.rooms_from_category(:living_room)
     assert_equal [room_4], house.rooms_from_category(:basement)
   end
 
   def test_house_can_calculate_area
     house = House.new("400000", "123 sugar lane")
-    room_1 = Room.new(:bedroom, 12, 15)
-    room_2 = Room.new(:bedroom, 10, 13)
-    room_3 = Room.new(:livingroom, 25, 15)
+    room_1 = Room.new(:bedroom, 10, 13)
+    room_2 = Room.new(:bedroom, 11, 15)
+    room_3 = Room.new(:living_room, 25, 15)
     room_4 = Room.new(:basement, 30, 41)
     house.add_room(room_1)
     house.add_room(room_2)
     house.add_room(room_3)
     house.add_room(room_4)
-    assert_equal 1915, house.area
+    assert_equal 1900, house.area
+  end
+
+  def test_house_can_show_price_per_square_foot
+    house = House.new("400000", "123 sugar lane")
+    room_1 = Room.new(:bedroom, 10, 13)
+    room_2 = Room.new(:bedroom, 11, 15)
+    room_3 = Room.new(:living_room, 25, 15)
+    room_4 = Room.new(:basement, 30, 41)
+    house.add_room(room_1)
+    house.add_room(room_2)
+    house.add_room(room_3)
+    house.add_room(room_4)
+    assert_equal 210.53, house.price_per_square_foot
   end
 
 end
